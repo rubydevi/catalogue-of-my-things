@@ -11,6 +11,7 @@ class Book < Items
   end
 
   def can_be_archived?
-    super && @cover_state != 'damaged'
+    # Override the parent method and add condition
+    super || @cover_state == 'bad'
   end
 end
