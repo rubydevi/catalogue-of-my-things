@@ -3,8 +3,8 @@ require_relative 'items'
 class Movie < Items
   attr_accessor :silent, :publish_date
   attr_reader :id
-  
-  def initialize(silent, publish_date, archived: true)
+
+  def initialize(silent, publish_date)
     super(publish_date)
     @silent = silent
   end
@@ -13,5 +13,3 @@ class Movie < Items
     super || @silent
   end
 end
-
-
