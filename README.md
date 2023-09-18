@@ -126,6 +126,12 @@ To test the project, execute the following command:
 - GitHub: [@rubydevi](https://github.com/rubydevi)
 - LinkedIn: [Chongtham Ruby Devi](https://www.linkedin.com/in/chongtham-bhoomika/)
 
+👤 **Hamza Ramalan**
+
+- GitHub: [@H-Ramalan](https://github.com/H-Ramalan)
+- Twitter: [@hamza_ramalan](https://twitter.com/hamza_ramalan)
+- LinkedIn: [Hamza Ramalan](https://www.linkedin.com/in/hamza-ramalan/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
