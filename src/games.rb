@@ -1,3 +1,4 @@
+require 'json'
 require_relative 'items'
 
 class Game < Items
@@ -18,6 +19,7 @@ class Game < Items
   def self.all
     ObjectSpace.each_object(self).to_a
   end
+
 end
 
 
