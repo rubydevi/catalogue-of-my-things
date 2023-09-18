@@ -121,6 +121,11 @@ To test the project, execute the following command:
 - Twitter: [@yonashenok](https://twitter.com/YonasHenok3)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/yonas-henok-996a26217)
 
+👤 **Chongtham Ruby Devi**
+
+- GitHub: [@rubydevi](https://github.com/rubydevi)
+- LinkedIn: [Chongtham Ruby Devi](https://www.linkedin.com/in/chongtham-bhoomika/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
