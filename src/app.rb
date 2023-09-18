@@ -29,19 +29,19 @@ class App
 
   def display_interactive_console
     puts "\nPlease choose an option by entering a number:
-    1.  List all books
-    2.  List all music albums
-    3.  List all movies
-    4.  List all games
-    5.  List all genres
-    6.  List all labels
-    7.  List all authors
-    8.  List all sources
-    9.  Add a book
-    10. Add a music album
-    11. Add a movie
-    12. Add a game
-    0.  Exit"
+      1.  List all books
+      2.  List all music albums
+      3.  List all movies
+      4.  List all games
+      5.  List all genres
+      6.  List all labels
+      7.  List all authors
+      8.  List all sources
+      9.  Add a book
+      10. Add a music album
+      11. Add a movie
+      12. Add a game
+      0.  Exit"
   end
 
   def run
@@ -51,7 +51,6 @@ class App
       entry = gets.chomp.to_i
       option = ACTIONS[entry]
       option ? send(option) : puts('Invalid input')
-
     end
   end
 end
