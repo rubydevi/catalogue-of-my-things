@@ -1,5 +1,4 @@
 class App
-
   ACTIONS = {
     1 => :find_books,
     2 => :find_music_albums,
@@ -55,6 +54,5 @@ class App
     9.  Add an author
     10. Add a game
     0.  Exit"
-  end
   end
 end
