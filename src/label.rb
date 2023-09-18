@@ -11,5 +11,7 @@ class Label
 
   def add_item(item)
     @items << item
+    # Set self as a property of the item object
+    item.label = self
   end
 end
