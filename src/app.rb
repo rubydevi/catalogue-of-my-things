@@ -1,4 +1,7 @@
-
+require_relative 'games'
+require_relative 'author'
+require_relative 'filechecker'
+require_relative 'store'
 class App
   ACTIONS = {
     1 => :find_books,
@@ -26,6 +29,45 @@ class App
 
   def add_a_movie
     puts 'Not implemented yet'
+  end
+
+  def find_games
+    puts "\n"
+  all_game = JSON.parse(FileChecker.read_json_file('./data/games.json'))
+  all_game.map do |game| 
+    puts "(Game) name: #{game['name']}, Multiplayer: #{game["multiplayer"]}, Game_id: #{game["id"]}"
+    puts "(Author) frist_name: #{game['author']['first_name']}, Last_name: #{game['author']['last_name']}, Author_id: #{game['author']['id']}"
+    puts "(Date) last_played_at : #{game['last_played_at']}, published_date: #{game['published_date']}"
+    45.times { print '=' }
+    puts "\n"
+  end
+
+  end
+
+  def find_authors
+    puts 'Not implemented author'
+  end
+
+  def add_a_game
+    puts 'Add a New Game '
+    print 'Enter first name of the author: '
+    first_name = gets.chomp
+    print 'Enter last name of the author: '
+    last_name = gets.chomp
+    author = Author.new(first_name, last_name)
+    print 'Enter the name of the game: '
+    name = gets.chomp
+    print 'Enter Multiplayer [true or false]: '
+    multiplayer = gets.chomp.downcase == 'true'
+    print 'Enter the date Last Played At: '
+    last_played_at = gets.chomp
+    print 'Enter publish date: '
+    published_date = gets.chomp
+    Game.new( name, multiplayer, last_played_at,  published_date, author)
+    data = Game.all
+    save = Store.new
+    save.store_game([data[0]])
+    puts 'Game added successfully'
   end
 
   def display_interactive_console
