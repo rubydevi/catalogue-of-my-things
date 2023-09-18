@@ -1,8 +1,9 @@
 # catalogue-of-my-things
+
 <a name="readme-top"></a>
 
-
 # 📗 Table of Contents
+
 - [📗 Table of Contents](#-table-of-contents)
 - [📖 ruby-group-capstone-project ](#-catalog-of-my-things-)
   - [🛠 Built With ](#-built-with-)
@@ -23,12 +24,14 @@
 <!-- PROJECT DESCRIPTION -->
 
 # 📖 ruby-group-capstone-project <a name="ruby-group-capstone-project"></a>
+
 In this project, we created a console app that will help you to keep a record of different types of things you own:
 
 - books
 - music albums
 - movies
 - games
+
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
@@ -66,7 +69,7 @@ See the live presentation <a href="">here</a>
 In order to run this project you need:
 
 - [Ruby](https://www.ruby-lang.org/en/) installed and running.
-- You should be able to use [IRB](https://en.wikipedia.org/wiki/Ruby_(programming_language)#Features).
+- You should be able to use [IRB](<https://en.wikipedia.org/wiki/Ruby_(programming_language)#Features>).
 
 ### Setup
 
@@ -112,16 +115,22 @@ To test the project, execute the following command:
 - Twitter: [@Abd elhakim Zayan](https://twitter.com/zayan_abdo)
 - LinkedIn: [@Abd elhakim Zayan](https://www.linkedin.com/in/abdozayan/)
 
+👤 **Yonas Henok**
+
+- GitHub: [@Yonashenok](https://github.com/yonashenok)
+- Twitter: [@yonashenok](https://twitter.com/YonasHenok3)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/yonas-henok-996a26217)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
 
- - Implement:
+- Implement:
 
-  - Add movies
-  - List movies
+- Add movies
+- List movies
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
