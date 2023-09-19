@@ -1,4 +1,3 @@
-
 require_relative 'app'
 
 def main
@@ -7,4 +6,3 @@ def main
 end
 
 main
-

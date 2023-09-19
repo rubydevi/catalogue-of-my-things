@@ -18,4 +18,3 @@ class Author
     ObjectSpace.each_object(self).to_a
   end
 end
-
