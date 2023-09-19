@@ -12,8 +12,8 @@ class App
   def initialize
     @music_albums = JSONStorage.load_data('music_albums').empty? ? [] : JSONStorage.load_data('music_albums')
     @genres = JSONStorage.load_data('genres').empty? ? [] : JSONStorage.load_data('genres')
-    @books = []
-    @labels = []
+    @books = JSONStorage.load_data('book').empty? ? [] : JSONStorage.load_data('book')
+    @labels = JSONStorage.load_data('label').empty? ? [] : JSONStorage.load_data('label')
   end
 
   ACTIONS = {
@@ -137,6 +137,8 @@ class App
       option ? send(option) : puts('Invalid input')
       JSONStorage.save_data('music_albums', @music_albums)
       JSONStorage.save_data('genres', @genres)
+      JSONStorage.save_data('books', @books)
+      JSONStorage.save_data('labels', @labels)
     end
   end
 end
