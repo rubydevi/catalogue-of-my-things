@@ -1,5 +1,5 @@
-require_relative '../src/label'
-require_relative '../src/book'
+require_relative '../classes/label'
+require_relative '../classes/book'
 
 describe Label do
   let(:label) { Label.new('Gift', 'Blue') }
