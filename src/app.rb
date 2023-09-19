@@ -4,11 +4,16 @@ require_relative 'store'
 require_relative 'functions/find_music_albums'
 require_relative 'functions/find_genres'
 require_relative 'functions/add_a_music_album'
+require_relative 'classes/book'
+require_relative 'classes/label'
+require_relative 'functions/input_handler'
 
 class App
   def initialize
     @music_albums = JSONStorage.load_data('music_albums').empty? ? [] : JSONStorage.load_data('music_albums')
     @genres = JSONStorage.load_data('genres').empty? ? [] : JSONStorage.load_data('genres')
+    @books = []
+    @labels = []
   end
 
   ACTIONS = {
@@ -52,6 +57,58 @@ class App
   def add_a_game
     add_game = InputAuthorGame.new
     add_game.new_game
+  end
+
+  # option 1
+  def find_books
+    puts 'Sorry, no books found! Press 9 to add a new book' if @books.empty?
+    @books.each do |book|
+      puts "Publisher: #{book.publisher}(#{book.publish_date}), Cover State: #{book.cover_state} [#{book.label.title}]"
+    end
+  end
+
+  # option 6
+  def find_labels(index: false)
+    puts 'Sorry, no labels added yet!' if @labels.empty?
+    puts 'Available labels:' unless index || @labels.empty?
+    @labels.each_with_index do |label, idx|
+      puts "#{idx + 1}. Label: #{label.title.capitalize}, Color: #{label.color.capitalize}"
+    end
+    return unless index
+
+    puts ''
+    puts '0 - Create a label'
+    puts ''
+    InputHandler.get_integer('Choose a label option')
+  end
+
+  # option 9
+  def add_a_book
+    publish_date = InputHandler.get_date('Publish Date')
+    publisher = InputHandler.get_string('Publisher')
+    cover_state = InputHandler.get_string('Cover State')
+
+    puts 'Choose a label: '
+    label_index = find_labels(index: true)
+    label = if label_index.zero?
+              create_label
+            else
+              @labels[label_index - 1]
+            end
+
+    new_book = Book.new(publish_date, publisher, cover_state)
+    label.add_item(new_book)
+    @books << new_book
+    puts 'You have successfully added a new book!'
+  end
+
+  # option 9.1
+  def create_label
+    title = InputHandler.get_string('Title')
+    color = InputHandler.get_string('Color')
+    new_label = Label.new(title, color)
+    @labels << new_label
+    new_label
   end
 
   def display_interactive_console
