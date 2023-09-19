@@ -22,7 +22,7 @@ describe Game do
       expect(game).to be_instance_of(Game)
     end
 
-    it "hould return false if parent's method returns false AND if last_played_at is older than 2 years" do
+    it "should return false if parent's method returns false AND if last_played_at is older than 2 years" do
       # Assert
       expect(game.can_be_archived?).to be false
     end
