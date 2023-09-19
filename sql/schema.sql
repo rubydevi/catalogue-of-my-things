@@ -31,16 +31,18 @@ CREATE TABLE game (
   id   SERIAL PRIMARY KEY,
   name varchar(100),
   multiplayer boolean,
-  last_played_at date,   
-  publish_date    date,
+  last_played_at DATE,   
+  publish_date    DATE,
   author_id    INT REFERENCES author(id)
+  FOREIGN KEY(id) REFERENCES item(id)
 );
 
 -- Create Author Table
 CREATE TABLE author(
-  id  SERIAL PRIMARY KEY,
+  id  INT GENERATED ALWAYS AS IDENTITY,
   first_name   varchar(100),
-  last_name    varchar(100)
+  last_name    varchar(100),
+  PRIMARY KEY(id)
 );
 
 
