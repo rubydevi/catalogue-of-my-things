@@ -2,7 +2,6 @@ require_relative '../filechecker'
 require_relative '../classes/author'
 require_relative '../classes/games'
 
-
 class InputAuthorGame
   def list_of_games
     puts "\n"
