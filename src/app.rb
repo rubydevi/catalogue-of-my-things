@@ -1,5 +1,5 @@
-require_relative './classes/author'
-require_relative './classes/games'
+require_relative 'classes/author'
+require_relative 'classes/games'
 require_relative 'filechecker'
 require_relative 'store'
 class App
