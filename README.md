@@ -92,7 +92,7 @@ Install thr project dependencies with:
 To run the project, execute the following command:
 
 ```
-  ruby src/main.rb
+  ruby main.rb
 ```
 
 ### Test <a name="test"></a>
