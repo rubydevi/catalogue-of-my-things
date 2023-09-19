@@ -24,9 +24,8 @@ class Items
   end
 
   def can_be_archived?
-    current_date = Date.today
-    year = current_date - @publish_date.year
-    year >= 10
+    publish_year = Date.parse(@publish_date).year
+    Time.now.year - publish_year.to_i > 10
   end
 
   def move_to_archive
