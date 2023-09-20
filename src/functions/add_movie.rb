@@ -1,0 +1,52 @@
+require_relative 'add_source'
+require_relative '../classes/movie'
+require 'json'
+
+def save_movie(collection, filename)
+  movie_data = collection.map(&:to_hash)
+  File.open(filename, 'w') do |file|
+    JSON.dump(movie_data, file)
+  end
+end
+
+def add_movie
+  puts 'Silent? [Y/N]: '
+  silent = gets.chomp.upcase == 'Y'
+  puts 'Movie name: '
+  name = gets.chomp
+  puts 'Published Date?[yyyy-mm-dd]: '
+  published_date = gets.chomp.to_s
+  movie = Movie.new(silent, name,  published_date)
+  @movie ||= []
+  @movie << movie
+  puts 'Movie successfully added!'
+  save_movie(@movie, './data/movie.json')
+end
+
+# def load_movies
+#   filename = './data/movie.json'
+#   return [] unless File.exist?(filename)
+#   JSON.parse(File.read(filename))
+# end 
+
+# def list_movies(movies)
+#   if movies.empty?
+#     puts 'No movies to list'
+#     return
+#   end
+
+#   puts 'List of movies: '
+#   movies.each_with_index do |movie, index|
+#     puts "#{index + 1}. Name: #{movie[name]}, Published: #{movie[publish_date]}"
+#   end
+# end
+
+# @movie = load_movies
+
+
+# def select_movie
+#   puts 'Select movie from the following list: '
+#   list_movie
+#   gets.chomp.to_i
+# end 
+

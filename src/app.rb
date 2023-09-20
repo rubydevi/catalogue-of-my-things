@@ -2,7 +2,14 @@ require_relative 'classes/author'
 require_relative 'classes/games'
 require_relative 'filechecker'
 require_relative 'store'
+require_relative 'functions/add_movie'
+require_relative 'functions/list_movies'
+
 class App
+  def initialize
+    @movie = []
+  end
+  
   ACTIONS = {
     1 => :find_books,
     2 => :find_music_albums,
@@ -20,15 +27,18 @@ class App
   }.freeze
 
   def find_movies
-    puts 'Not implemented yet'
+    list_movies(@movie)
+    # puts 'Not implemented yet'
   end
 
   def find_sources
-    puts 'Not implemented yet'
+
+    # puts 'Not implemented yet'
   end
 
   def add_a_movie
-    puts 'Not implemented yet'
+    # puts 'Not implemented yet'
+    add_movie
   end
 
   def find_games
