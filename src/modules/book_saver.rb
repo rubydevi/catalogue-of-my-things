@@ -14,7 +14,7 @@ module DataSaver
   def save_labels
     labels_data = []
     @labels.each do |label|
-      labels_data.push({ title: label.title, colour: label.color })
+      labels_data.push({ title: label.title, color: label.color })
     end
     File.write('data/labels.json', JSON.pretty_generate(labels_data))
   end
