@@ -37,30 +37,3 @@ def add_movie
   save_movie(@movie, './data/movie.json')
   save_source(source, './data/sources.json')
 end
-
-# def load_movies
-#   filename = './data/movie.json'
-#   return [] unless File.exist?(filename)
-#   JSON.parse(File.read(filename))
-# end
-
-# def list_movies(movies)
-#   if movies.empty?
-#     puts 'No movies to list'
-#     return
-#   end
-
-#   puts 'List of movies: '
-#   movies.each_with_index do |movie, index|
-#     puts "#{index + 1}. Name: #{movie[name]}, Published: #{movie[publish_date]}"
-#   end
-# end
-
-# @movie = load_movies
-
-
-# def select_movie
-#   puts 'Select movie from the following list: '
-#   list_movie
-#   gets.chomp.to_i
-# end
