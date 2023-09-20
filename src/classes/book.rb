@@ -14,17 +14,4 @@ class Book < Items
     # Override the parent method and add condition
     super || @cover_state == 'bad'
   end
-
-  def to_json(*args)
-    {
-      'publish_date' => @publish_date,
-      'publisher' => @publisher,
-      'cover_state' => @cover_state
-    }.to_json(*args)
-  end
-
-  def self.from_json(json)
-    data = JSON.parse(json)
-    Book.new(data['publish_date'], data['publisher'], data['cover_state'])
-  end
 end

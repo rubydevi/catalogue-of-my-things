@@ -14,16 +14,4 @@ class Label
     # Set self as a property of the item object
     item.label = self
   end
-
-  def to_json(*args)
-    {
-      'title' => @title,
-      'color' => @color
-    }.to_json(*args)
-  end
-
-  def self.from_json(json)
-    data = JSON.parse(json)
-    Label.new(data['title'], data['color'])
-  end
 end
