@@ -1,6 +1,10 @@
-require_relative 'functions/game_author'
-require './util/json_storage'
+require_relative 'classes/author'
+require_relative 'classes/games'
+require_relative 'filechecker'
 require_relative 'store'
+require_relative 'functions/add_movie'
+require_relative 'functions/list_movies'
+require_relative 'functions/list_source'
 require_relative 'functions/find_music_albums'
 require_relative 'functions/find_genres'
 require_relative 'functions/add_a_music_album'
@@ -10,12 +14,15 @@ require_relative 'functions/input_handler'
 require_relative 'functions/label_handler'
 require_relative 'modules/book_loader'
 require_relative 'modules/book_saver'
+require_relative 'util/json_storage'
 
 class App
   include DataLoader
   include DataSaver
 
   def initialize
+    @movie = []
+    @source = []
     @music_albums = JSONStorage.load_data('music_albums').empty? ? [] : JSONStorage.load_data('music_albums')
     @genres = JSONStorage.load_data('genres').empty? ? [] : JSONStorage.load_data('genres')
     @books = []
@@ -41,37 +48,38 @@ class App
   }.freeze
 
   def find_movies
-    puts 'Not implemented yet'
+    list_movies(@movie)
   end
 
   def find_sources
-    puts 'Not implemented yet'
+    list_sources(@source)
   end
 
   def add_a_movie
-    puts 'Not implemented yet'
+    add_movie
   end
 
   def find_games
-    game = InputAuthorGame.new
-    game.list_of_games
+    puts "\n"
+    all_game = JSON.parse(FileChecker.read_json_file('./data/games.json'))
+    all_game.map do |game|
+      puts "(Game) name: #{game['name']}, Multiplayer: #{game['multiplayer']}, Game_id: #{game['id']}"
+      puts "(Author) frist_name: #{game['author']['first_name']}, Last_name: #{game['author']['last_name']}"
+      puts "(Date) last_played_at : #{game['last_played_at']}, published_date: #{game['published_date']}"
+      45.times { print '=' }
+      puts "\n"
+    end
   end
 
   def find_authors
-    author = InputAuthorGame.new
-    author.list_of_authors
-  end
-
-  def add_a_game
-    add_game = InputAuthorGame.new
-    add_game.new_game
-  end
-
-  # option 1
-  def find_books
-    puts 'Sorry, no books found! Press 9 to add a new book' if @books.empty?
-    @books.each do |book|
-      puts "Publisher: #{book.publisher}(#{book.publish_date}), Cover State: #{book.cover_state} [#{book.label.title}]"
+    puts "\n"
+    all_authors = JSON.parse(FileChecker.read_json_file('./data/authors.json'))
+    all_authors.map do |author|
+      puts "(Author) frist_name: #{author['first_name']}"
+      puts "(Author) Last_name: #{author['last_name']}"
+      puts "(Author) Author_id: #{author['id']}"
+      45.times { print '=' }
+      puts "\n"
     end
   end
 
@@ -100,13 +108,28 @@ class App
     puts 'You have successfully added a new book!'
   end
 
-  # option 9.1
-  def create_label
-    title = InputHandler.get_string('Title')
-    color = InputHandler.get_string('Color')
-    new_label = Label.new(title, color)
-    @labels << new_label
-    new_label
+  def add_a_game
+    save = Store.new
+    puts 'Add a New Game '
+    print 'Enter first name of the author: '
+    first_name = gets.chomp
+    print 'Enter last name of the author: '
+    last_name = gets.chomp
+    author = Author.new(first_name, last_name)
+    author_data = Author.all
+    save.store([author_data[0]], './data/authors.json')
+    print 'Enter the name of the game: '
+    name = gets.chomp
+    print 'Enter Multiplayer [true or false]: '
+    multiplayer = gets.chomp.downcase == 'true'
+    print 'Enter the date Last Played At: '
+    last_played_at = gets.chomp
+    print 'Enter publish date: '
+    published_date = gets.chomp
+    Game.new(name, multiplayer, last_played_at, published_date, author)
+    data = Game.all
+    save.store([data[0]], './data/games.json')
+    puts 'Game added successfully'
   end
 
   def exit
@@ -138,8 +161,6 @@ class App
       entry = gets.chomp.to_i
       option = ACTIONS[entry]
       option ? send(option) : puts('Invalid input')
-      JSONStorage.save_data('music_albums', @music_albums)
-      JSONStorage.save_data('genres', @genres)
     end
   end
 end
