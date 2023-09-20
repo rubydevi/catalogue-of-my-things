@@ -14,6 +14,8 @@ require_relative 'functions/input_handler'
 require_relative 'functions/label_handler'
 require_relative 'modules/book_loader'
 require_relative 'modules/book_saver'
+require_relative 'util/json_storage'
+
 
 
 class App
@@ -71,7 +73,6 @@ class App
     end
   end
 
-
   def find_authors
     puts "\n"
     all_authors = JSON.parse(FileChecker.read_json_file('./data/authors.json'))
@@ -82,6 +83,7 @@ class App
       45.times { print '=' }
       puts "\n"
     end
+  end
 
   # option 6
   def find_labels(index: false)
@@ -106,7 +108,6 @@ class App
     label.add_item(new_book)
     @books << new_book
     puts 'You have successfully added a new book!'
-
   end
 
   def add_a_game
