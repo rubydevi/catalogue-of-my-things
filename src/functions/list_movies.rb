@@ -5,7 +5,7 @@ def load_movies
   JSON.parse(File.read(filename))
 end
 
-def list_movies(_movies)
+def list_movies(movies)
   movies = load_movies
   if movies.empty?
     puts 'No movies to list'

@@ -19,6 +19,10 @@ class Items
     @author = author
   end
 
+  def add_source(_source)
+    @source = Source
+  end
+
   def add_label(label)
     @label = label
   end
