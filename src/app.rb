@@ -5,11 +5,33 @@ require_relative 'store'
 require_relative 'functions/add_movie'
 require_relative 'functions/list_movies'
 require_relative 'functions/list_source'
+require_relative 'functions/find_music_albums'
+require_relative 'functions/find_genres'
+require_relative 'functions/add_a_music_album'
+require_relative 'classes/book'
+require_relative 'classes/label'
+require_relative 'functions/input_handler'
+require_relative 'functions/label_handler'
+require_relative 'modules/book_loader'
+require_relative 'modules/book_saver'
+
 
 class App
+  include DataLoader
+  include DataSaver
+
   def initialize
+
     @movie = []
     @source = []
+
+    @music_albums = JSONStorage.load_data('music_albums').empty? ? [] : JSONStorage.load_data('music_albums')
+    @genres = JSONStorage.load_data('genres').empty? ? [] : JSONStorage.load_data('genres')
+    @books = []
+    @labels = []
+    load_books
+    load_labels
+
   end
   ACTIONS = {
     1 => :find_books,
@@ -54,6 +76,7 @@ class App
     end
   end
 
+
   def find_authors
     puts "\n"
     all_authors = JSON.parse(FileChecker.read_json_file('./data/authors.json'))
@@ -64,6 +87,31 @@ class App
       45.times { print '=' }
       puts "\n"
     end
+
+  # option 6
+  def find_labels(index: false)
+    LabelHandler.find_labels(@labels, index: index)
+  end
+
+  # option 9
+  def add_a_book
+    publish_date = InputHandler.get_date('Publish Date')
+    publisher = InputHandler.get_string('Publisher')
+    cover_state = InputHandler.get_string('Cover State')
+
+    puts 'Choose a label: '
+    label_index = find_labels(index: true)
+    label = if label_index.zero?
+              create_label
+            else
+              @labels[label_index - 1]
+            end
+
+    new_book = Book.new(publish_date, publisher, cover_state)
+    label.add_item(new_book)
+    @books << new_book
+    puts 'You have successfully added a new book!'
+
   end
 
   def add_a_game
@@ -88,6 +136,11 @@ class App
     data = Game.all
     save.store([data[0]], './data/games.json')
     puts 'Game added successfully'
+  end
+
+  def exit
+    save_books
+    save_labels
   end
 
   def display_interactive_console
