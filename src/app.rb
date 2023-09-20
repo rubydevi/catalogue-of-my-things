@@ -21,18 +21,16 @@ class App
   include DataSaver
 
   def initialize
-
     @movie = []
     @source = []
-
     @music_albums = JSONStorage.load_data('music_albums').empty? ? [] : JSONStorage.load_data('music_albums')
     @genres = JSONStorage.load_data('genres').empty? ? [] : JSONStorage.load_data('genres')
     @books = []
     @labels = []
     load_books
     load_labels
-
   end
+
   ACTIONS = {
     1 => :find_books,
     2 => :find_music_albums,
@@ -51,16 +49,13 @@ class App
 
   def find_movies
     list_movies(@movie)
-    # puts 'Not implemented yet'
   end
 
   def find_sources
     list_sources(@source)
-    # puts 'Not implemented yet'
   end
 
   def add_a_movie
-    # puts 'Not implemented yet'
     add_movie
   end
 
