@@ -7,13 +7,21 @@ require_relative 'functions/add_a_music_album'
 require_relative 'classes/book'
 require_relative 'classes/label'
 require_relative 'functions/input_handler'
+require_relative 'functions/label_handler'
+require_relative 'modules/book_loader'
+require_relative 'modules/book_saver'
 
 class App
+  include DataLoader
+  include DataSaver
+
   def initialize
     @music_albums = JSONStorage.load_data('music_albums').empty? ? [] : JSONStorage.load_data('music_albums')
     @genres = JSONStorage.load_data('genres').empty? ? [] : JSONStorage.load_data('genres')
-    @books = JSONStorage.load_data('book').empty? ? [] : JSONStorage.load_data('book')
-    @labels = JSONStorage.load_data('label').empty? ? [] : JSONStorage.load_data('label')
+    @books = []
+    @labels = []
+    load_books
+    load_labels
   end
 
   ACTIONS = {
@@ -69,17 +77,7 @@ class App
 
   # option 6
   def find_labels(index: false)
-    puts 'Sorry, no labels added yet!' if @labels.empty?
-    puts 'Available labels:' unless index || @labels.empty?
-    @labels.each_with_index do |label, idx|
-      puts "#{idx + 1}. Label: #{label.title.capitalize}, Color: #{label.color.capitalize}"
-    end
-    return unless index
-
-    puts ''
-    puts '0 - Create a label'
-    puts ''
-    InputHandler.get_integer('Choose a label option')
+    LabelHandler.find_labels(@labels, index: index)
   end
 
   # option 9
@@ -111,6 +109,11 @@ class App
     new_label
   end
 
+  def exit
+    save_books
+    save_labels
+  end
+
   def display_interactive_console
     puts "\nPlease choose an option by entering a number:
       1.  List all books
@@ -137,8 +140,6 @@ class App
       option ? send(option) : puts('Invalid input')
       JSONStorage.save_data('music_albums', @music_albums)
       JSONStorage.save_data('genres', @genres)
-      JSONStorage.save_data('books', @books)
-      JSONStorage.save_data('labels', @labels)
     end
   end
 end
