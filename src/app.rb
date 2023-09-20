@@ -16,8 +16,6 @@ require_relative 'modules/book_loader'
 require_relative 'modules/book_saver'
 require_relative 'util/json_storage'
 
-
-
 class App
   include DataLoader
   include DataSaver
