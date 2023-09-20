@@ -69,6 +69,13 @@ class App
     author = InputAuthorGame.new
     author.list_of_authors
   end
+  # option 1
+  def find_books
+    puts 'Sorry, no books found! Press 9 to add a new book' if @books.empty?
+    @books.each do |book|
+      puts "Publisher: #{book.publisher}(#{book.publish_date}), Cover State: #{book.cover_state} [#{book.label.title}]"
+    end
+  end
 
   # option 6
   def find_labels(index: false)
