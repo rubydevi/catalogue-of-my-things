@@ -107,6 +107,15 @@ class App
     add_game.new_game
   end
 
+    # option 9.1
+    def create_label
+      title = InputHandler.get_string('Title')
+      color = InputHandler.get_string('Color')
+      new_label = Label.new(title, color)
+      @labels << new_label
+      new_label
+    end
+
   def exit
     save_books
     save_labels
