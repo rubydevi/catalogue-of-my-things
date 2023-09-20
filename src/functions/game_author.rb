@@ -1,48 +1,9 @@
-require_relative 'classes/author'
-require_relative 'classes/games'
-require_relative 'filechecker'
-require_relative 'store'
-require_relative 'functions/add_movie'
-require_relative 'functions/list_movies'
-require_relative 'functions/list_source'
+require_relative '../filechecker'
+require_relative '../classes/author'
+require_relative '../classes/games'
 
-class App
-  def initialize
-    @movie = []
-    @source = []
-  end
-  ACTIONS = {
-    1 => :find_books,
-    2 => :find_music_albums,
-    3 => :find_movies,
-    4 => :find_games,
-    5 => :find_genres,
-    6 => :find_labels,
-    7 => :find_authors,
-    8 => :find_sources,
-    9 => :add_a_book,
-    10 => :add_a_music_album,
-    11 => :add_a_movie,
-    12 => :add_a_game,
-    0 => :exit
-  }.freeze
-
-  def find_movies
-    list_movies(@movie)
-    # puts 'Not implemented yet'
-  end
-
-  def find_sources
-    list_sources(@source)
-    # puts 'Not implemented yet'
-  end
-
-  def add_a_movie
-    # puts 'Not implemented yet'
-    add_movie
-  end
-
-  def find_games
+class InputAuthorGame
+  def list_of_games
     puts "\n"
     all_game = JSON.parse(FileChecker.read_json_file('./data/games.json'))
     all_game.map do |game|
@@ -54,7 +15,7 @@ class App
     end
   end
 
-  def find_authors
+  def list_of_authors
     puts "\n"
     all_authors = JSON.parse(FileChecker.read_json_file('./data/authors.json'))
     all_authors.map do |author|
@@ -66,7 +27,7 @@ class App
     end
   end
 
-  def add_a_game
+  def new_game
     save = Store.new
     puts 'Add a New Game '
     print 'Enter first name of the author: '
@@ -88,32 +49,5 @@ class App
     data = Game.all
     save.store([data[0]], './data/games.json')
     puts 'Game added successfully'
-  end
-
-  def display_interactive_console
-    puts "\nPlease choose an option by entering a number:
-      1.  List all books
-      2.  List all music albums
-      3.  List all movies
-      4.  List all games
-      5.  List all genres
-      6.  List all labels
-      7.  List all authors
-      8.  List all sources
-      9.  Add a book
-      10. Add a music album
-      11. Add a movie
-      12. Add a game
-      0.  Exit"
-  end
-
-  def run
-    entry = -1
-    until entry.zero?
-      display_interactive_console
-      entry = gets.chomp.to_i
-      option = ACTIONS[entry]
-      option ? send(option) : puts('Invalid input')
-    end
   end
 end

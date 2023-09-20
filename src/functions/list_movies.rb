@@ -1,10 +1,12 @@
 def load_movies
   filename = './data/movie.json'
   return [] unless File.exist?(filename)
-  JSON.parse(File.read(filename))
-end 
 
-def list_movies(movies)
+  JSON.parse(File.read(filename))
+end
+
+def list_movies(_movies)
+  movies = load_movies
   if movies.empty?
     puts 'No movies to list'
     return
@@ -12,7 +14,6 @@ def list_movies(movies)
 
   puts 'List of movies: '
   movies.each_with_index do |movie, index|
-    puts "#{index + 1}. Name: #{movie.name}, Published: #{movie.publish_date}"
+    puts "#{index + 1}. Name: #{movie['name']}, Published: #{movie['publish_date']}"
   end
 end
-

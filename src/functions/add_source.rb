@@ -17,5 +17,4 @@ end
 def select_source
   puts 'Select source from the following list: '
   list_source
-end 
-
+end

@@ -14,7 +14,7 @@ class Movie < Items
     super || @silent
   end
 
-   def to_hash
+  def to_hash
     {
       id: @id,
       name: @name,
