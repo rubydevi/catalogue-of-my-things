@@ -8,7 +8,15 @@ class Source
     @items = []
   end
 
+  def to_hash
+    {
+      id: @id,
+      name: @name
+    }
+  end
+
   def add_item(item)
-    @items.push(item)
+    item.source = self
+    @items << item
   end
 end
