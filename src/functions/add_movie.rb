@@ -3,9 +3,11 @@ require_relative '../classes/movie'
 require 'json'
 
 def save_movie(collection, filename)
+  existing_movies = load_movies || []
   movie_data = collection.map(&:to_hash)
+  merged_data = existing_movies + movie_data
   File.open(filename, 'w') do |file|
-    JSON.dump(movie_data, file)
+    JSON.dump(merged_data, file)
   end
 end
 
