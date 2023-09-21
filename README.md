@@ -56,7 +56,7 @@ In this project, we created a console app that will help you to keep a record of
 
 ## 🚀 Video Presentation Link <a name="live-demo"></a>
 
-See the live presentation <a href="">here</a>
+See the live presentation <a href="https://youtu.be/1P-Xl1SatpE">here</a>
 
 <p align="right">(<ahref="#readme-top">back to top</a>)</p>
 
