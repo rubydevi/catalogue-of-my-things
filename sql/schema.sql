@@ -68,6 +68,7 @@ CREATE TABLE movie (
   publish_date  date,
   silent boolean,
   source_id  int references source(id),
+  item_id int references item(id)
   PRIMARY KEY(id)
 );
 
