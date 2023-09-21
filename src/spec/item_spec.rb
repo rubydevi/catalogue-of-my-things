@@ -17,20 +17,20 @@ RSpec.describe Items do
 
   it 'should add genre and associate it' do
     genre = Genre.new('Science Fiction')
-    @item.add_genre(genre)
+    @item.genre=(genre)
     expect(@item.genre).to eq(genre)
     expect(genre.items).to include(@item)
   end
 
   it 'should add author' do
     author = Author.new('John', 'Doe')
-    @item.add_author(author)
+    @item.author=(author)
     expect(@item.author).to eq(author)
   end
 
   it 'should add label' do
     label = Label.new('Publisher', 'yellow')
-    @item.add_label(label)
+    @item.label=(label)
     expect(@item.label).to eq(label)
   end
 
