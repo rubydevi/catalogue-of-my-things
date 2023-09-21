@@ -146,6 +146,8 @@ class App
       entry = gets.chomp.to_i
       option = ACTIONS[entry]
       option ? send(option) : puts('Invalid input')
+      JSONStorage.save_data('music_albums', @music_albums)
+      JSONStorage.save_data('genres', @genres)
     end
   end
 end
