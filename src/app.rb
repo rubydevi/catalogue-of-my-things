@@ -120,8 +120,6 @@ class App
   def exit
     save_books
     save_labels
-    save_movie(@movie, 'data/movie.json')
-    
   end
 
   def display_interactive_console
