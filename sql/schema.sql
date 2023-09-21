@@ -61,3 +61,20 @@ CREATE TABLE label (
   title varchar(100),
   color varchar(100)
 );
+
+-- Create Movie Table
+CREATE TABLE movie (
+  id  integer GENERATED ALWAYS AS IDENTITY,
+  publish_date  date,
+  silent boolean,
+  source_id  int references source(id),
+  item_id int references item(id)
+  PRIMARY KEY(id)
+);
+
+-- Create Source Table
+CREATE TABLE source(
+  id    integer GENERATED ALWAYS AS IDENTITY,
+  name  varchar(100),
+  PRIMARY KEY(id)
+);
